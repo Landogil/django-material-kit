@@ -1,27 +1,10 @@
-version: '3.8'
+version: '3.4'
+
 services:
-  appseed-app:
-    container_name: appseed_app
-    restart: always
-    build: .
-    networks:
-      - db_network
-      - web_network
-  nginx:
-    container_name: nginx
-    restart: always
-    image: "nginx:latest"
+  djangomaterialkit:
+    image: djangomaterialkit
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
-      - "5085:5085"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    networks:
-      - web_network
-    depends_on: 
-      - appseed-app
-networks:
-  db_network:
-    driver: bridge
-  web_network:
-    driver: bridge
- 
+      - 8000:8000
